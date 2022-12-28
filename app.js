@@ -85,3 +85,8 @@ app.use(errorController.get404);
 app.listen(3000);
 
 
+
+//output: in vs terminal : null--> when add aproduct.
+//                        { Name: 'ddd', emailId: 'sss@ff' }--> when do contactus..
+//  In products.json file because we storing in file instead of database---> [{"title":"hhh"},{"title":"ddd"},{"title":"jj"},{"title":"seconddd book"},{"title":""},{"title":"done book"},{"title":"first bookkkkkkkkkk"},{"title":"gg"},{"title":"s"}]
+
