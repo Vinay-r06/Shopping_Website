@@ -3,7 +3,7 @@ const express= require('express');
 const router=express.Router();              //.Router()--> this is a function..
 
 
-const contactController= require('../controllers/contactus');
+const contactController= require('../controllers/contactus');                     // other way---> import {contactController} from '../controllers/contactus'      --> this is called spreading of object
 
 const path = require ('path');            // core module by nodejs
 
