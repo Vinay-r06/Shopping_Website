@@ -1,0 +1,27 @@
+<%- include('../includes/head.ejs') %>
+</head>
+
+<body>
+ <%- include('../includes/navigation.ejs') %>
+
+ <main class ="centered">
+    <h1><%= product.title %></h1>
+    <hr>
+    <div>
+      <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+    </div>
+    <h2><%= product.price %></h2>
+    <h2><%= product.description %></h2>
+
+    <%- include('../includes/add-to-cart.ejs') %>
+    
+ </main>
+ <% - include('../includes/end.ejs') %>  
+
+
+
+
+ <!-- if u have "include" in for loop or in a loop.. in above we are looping through all the products and then --(product is local variable available in that loop only....then "include"-- included in loop...so doesnt get that variable by default but u can pass it to that a there as second argument to that include function...again pass an object and simply add that variable again..{this what will be available in include -- product: product-- this is had value in this file in loop we used product variable used that one  }) -- (<%- include('../includes/add-to-cart.ejs', {product: product} ) %>)-->
+
+
+<!-- here dont want {product: product} because not inside the loop..so its available globally so its works -->
