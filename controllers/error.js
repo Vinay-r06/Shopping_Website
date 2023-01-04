@@ -7,5 +7,4 @@ exports.get404 = (req, res, next) => {
   productCSS: true,
   activeAddProduct: true
 });          
-
 }

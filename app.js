@@ -235,4 +235,4 @@ app.listen(3000);
 
 
 
-//output: 
+//output: when add to cart clicked...data will store in cart.json... price and details

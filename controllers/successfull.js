@@ -7,7 +7,6 @@ exports.getSuccess=(req,res, next)=> {
         productCSS: true,
         activeAddProduct: true
       });          
-
 }
 
 

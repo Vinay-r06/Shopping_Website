@@ -42,7 +42,6 @@ static addProduct(id, productPrice) {                             // id as argum
     });
                                                                  // save the cart back to our file
 }
-
 }
 
 

@@ -10,7 +10,6 @@ const successController= require('../controllers/successfull');
 router.get('/success', successController.getSuccess);                                                                                                                                                            
 
 
-
     //  ../admin/product => POST request..
 router.post('/success', successController.postSuccess);  
 

@@ -46,6 +46,7 @@ Product.findById(prodId, (product)=>{            // product as call back-->to ge
     Cart.addProduct(prodId, product.price);
 });
   res.redirect('/cart');
+  
 }
 
 exports.getOrders=(req,res,next)=>{
