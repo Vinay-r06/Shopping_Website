@@ -1,4 +1,5 @@
 const Product=require('../models/product');
+const Cart = require('../models/cart');
 
 exports.getProducts=(req,res,next)=>{
     Product.fetchAll(products=>{
@@ -41,7 +42,9 @@ exports.getCart=(req,res,next)=>{
 
 exports.postCart=(req,res,next)=>{                    // we want retreive the product ID from the incoming request and then also fetch that product in our database(file)
   const prodId= req.body.productId;                    //  because productId i am using in the product-detail.ejs file in form hidden input name..
-  console.log(prodId);
+Product.findById(prodId, (product)=>{            // product as call back-->to get my product 
+    Cart.addProduct(prodId, product.price);
+});
   res.redirect('/cart');
 }
 
