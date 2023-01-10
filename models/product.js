@@ -2,6 +2,8 @@ const fs =require ('fs');       // to use file u want to import file module..
 
 const path =require('path');       // construct path soo it will run on all os..
 
+const Cart=require('./cart');
+
 const p= path.join(path.dirname(process.mainModule.filename), 'data', 'products.json');
 
 const getProductsFromFile= cb =>{
@@ -46,6 +48,22 @@ module.exports=class Product {                              // here we doing "ne
         });              
     };                                               
         
+
+
+    static deleteById(id){
+        getProductsFromFile( products=>{                            // we had array of objects where each object has a ID.... 
+            const product=products.find(prod=>prod.id===id);
+            const updatedProducts= products.filter(prod=>prod.id !==id);            //find()-->default find method in javascript to find
+            fs.writeFile(p, JSON.stringify(updatedProducts), err => {
+                if (!err){
+                Cart.deleteProduct(id, product.price);
+                }
+            })
+        })
+    }
+
+
+    
        static fetchAll(cb) {                                         // utility function ...// we can call directly on cloass itself not on a instantiated on the class itself
         getProductsFromFile(cb)    
        }

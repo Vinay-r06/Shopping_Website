@@ -29,7 +29,8 @@
                                 </div>
                                 <div class="card__actions">
                                     <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
-                                    <form action="/admin/delete-product" method="POST">
+                                    <form action="/admin/delete-product"  method="POST">
+                                        <input type="hidden" value="<%= product.id %>" name="productId">
                                         <button class="btn" type="submit">Delete</button>
                                     </form>
 
@@ -41,4 +42,4 @@
                         <h1>No Products Found!</h1>
                         <% } %>
             </main>
-            <%- include('../includes/end.ejs') %>
+            <%- include('../includes/end.ejs') %> 

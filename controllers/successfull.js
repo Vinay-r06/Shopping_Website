@@ -9,7 +9,6 @@ exports.getSuccess=(req,res, next)=> {
       });          
 }
 
-
 exports.postSuccess=(req, res, next)=>{
     const object=JSON.parse(JSON.stringify(req.body))                     // { title: 'book', size: '3' }                       
     console.log(object);

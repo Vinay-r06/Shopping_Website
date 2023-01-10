@@ -15,3 +15,4 @@ router.get('/contactUs', contactController.getContactUs);
 router.post('/contactUs', contactController.postContactUs)  
 
 module.exports=router;           // this router object and this routes registered                          // router---.get and .post are 2 object --> this a object which we registered routes..
+ 

@@ -42,6 +42,28 @@ static addProduct(id, productPrice) {                             // id as argum
     });
                                                                  // save the cart back to our file
 }
+
+
+static deleteProduct(id,productPrice) {
+fs.readFile(p, (err, fileContent)=>{
+    if(err){
+        return;
+    }
+
+    const updatedCart={...JSON.parse(fileContent)};
+    const product =updatedCart.products.find(prod=> prod.id=== id);   //products-->is a array
+    const productQty = product.qty;
+    updatedCart.products=updatedCart.products.filter(
+        prod=>prod.id!==id
+    );
+    updatedCart.totalPrice=updatedCart.totalPrice-productPrice*productQty;
+
+    fs.writeFile(p, JSON.stringify(updatedCart), err =>{
+        console.log(err);
+    })
+})
+}
+
 }
 
 

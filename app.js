@@ -193,9 +193,8 @@
 
 
 
-// dynamic post (1)( part 2)--> handling cart-->Adding a Cart Model..
-
-
+// dynamic post (1)( part 2)--> handling cart-->Adding a Cart Model..and edit funtionality....delete funationality...
+ 
 
 
 const path = require('path');

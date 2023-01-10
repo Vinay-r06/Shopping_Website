@@ -11,6 +11,7 @@ exports.getProducts=(req,res,next)=>{
     })
 }
 
+
 exports.getProduct = (req,res, next)=>{
     const prodId=req.params.productId;        //.params--> object by request....,// productId--> because we name it same in "shop.js" routes -->like-->/products/:productId
     Product.findById(prodId, product =>{                      // async function we have to pass in a callback ..cant console.log
