@@ -73,7 +73,7 @@ module.exports=class Product {                              // here we doing "ne
             const product= products.find(p=>p.id===id);            //find()-->default find method in javascript to find
             cb(product); 
         })
-        
+    
        }
      }
     

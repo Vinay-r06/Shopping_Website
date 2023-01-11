@@ -7,7 +7,7 @@ const contactController= require('../controllers/contactus');                   
 
 const path = require ('path');            // core module by nodejs
 
-
+ 
 router.get('/contactUs', contactController.getContactUs);                                                                                                                                                            
 
  

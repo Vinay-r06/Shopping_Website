@@ -203,7 +203,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-
+ 
 const app = express();
 
 app.set('view engine', 'ejs'); 
@@ -234,4 +234,24 @@ app.listen(3000);
 
 
 
-//output: when add to cart clicked...data will store in cart.json... price and details
+//output: when add to cart clicked...data will store in cart.json... price and details....
+
+
+
+
+
+//summary: 
+//         dynamic routing:
+// u can pass dynamic path segments by adding a ":" to the express router path.. 
+// the name u add after ":" is the name by which u can extract the data on "req.params"....
+// optional(query) parameters can also be passed (?param=value&b=2) and extracted (req.query.myParam)...
+//
+
+
+
+//     more on models:
+// a cart model was added- it holds static methods only.. 
+// u can interact between models (e.g - delete cart item if a product is deleted)...
+// working with files for data storage is suboptimal for bigger amounts od data..
+//
+//

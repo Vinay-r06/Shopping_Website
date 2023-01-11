@@ -6,7 +6,7 @@ const path = require ('path');            // core module by nodejs
 
 const successController= require('../controllers/successfull');
 
-
+ 
 router.get('/success', successController.getSuccess);                                                                                                                                                            
 
 

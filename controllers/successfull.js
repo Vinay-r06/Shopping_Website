@@ -7,7 +7,7 @@ exports.getSuccess=(req,res, next)=> {
         productCSS: true,
         activeAddProduct: true
       });          
-}
+} 
 
 exports.postSuccess=(req, res, next)=>{
     const object=JSON.parse(JSON.stringify(req.body))                     // { title: 'book', size: '3' }                       

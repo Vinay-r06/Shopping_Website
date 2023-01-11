@@ -52,6 +52,9 @@ fs.readFile(p, (err, fileContent)=>{
 
     const updatedCart={...JSON.parse(fileContent)};
     const product =updatedCart.products.find(prod=> prod.id=== id);   //products-->is a array
+    if(!product){
+        return;                                                          // if product is not found then that is not part of "cart"..it will not contiune
+    }
     const productQty = product.qty;
     updatedCart.products=updatedCart.products.filter(
         prod=>prod.id!==id
@@ -63,6 +66,21 @@ fs.readFile(p, (err, fileContent)=>{
     })
 })
 }
+
+
+static getCart(cb){
+    fs.readFile(p, (err, fileContent)=>{
+        const cart =JSON.parse(fileContent);
+        if(err){
+            cb(null);
+        } else
+        { 
+                cb(cart);
+        }
+        
+    })
+}
+
 
 }
 
