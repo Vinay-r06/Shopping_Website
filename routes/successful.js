@@ -14,4 +14,4 @@ router.get('/success', successController.getSuccess);
 router.post('/success', successController.postSuccess);  
 
 module.exports=router;           // this router object and this routes registered                          // router---.get and .post are 2 object --> this a object which we registered routes..
-  
+   

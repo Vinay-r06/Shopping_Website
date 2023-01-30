@@ -7,7 +7,7 @@ exports.getAddProduct = (req, res, next) => {
     editing:false                                    // u will get error if u didnt use this line..because in edit-product.ejs used "editing variable"....
   });
 };
-
+ 
  
 exports.postAddProduct = (req, res, next) => {
   const title=req.body.title;

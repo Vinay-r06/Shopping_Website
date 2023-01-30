@@ -197,36 +197,36 @@
  
 
 
-const path = require('path');
+// const path = require('path');
 
-const express = require('express');
-const bodyParser = require('body-parser');
+// const express = require('express');
+// const bodyParser = require('body-parser');
 
-const errorController = require('./controllers/error');
+// const errorController = require('./controllers/error');
  
-const app = express();
+// const app = express();
 
-app.set('view engine', 'ejs'); 
-app.set('views', 'views'); 
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views'); 
 
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
 
-const contactRoutes=require('./routes/contactUs');
-const successRoutes=require('./routes/successful');
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/admin', adminRoutes);
-app.use(shopRoutes);
-app.use('/admin', contactRoutes); 
-app.use('/admin', successRoutes); 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
 
-app.use(errorController.get404);
+// app.use(errorController.get404);
 
-app.listen(3000);
+// app.listen(3000);
 
 
 
@@ -255,3 +255,102 @@ app.listen(3000);
 // working with files for data storage is suboptimal for bigger amounts od data..
 //
 //
+
+
+
+
+// sql integrate  (connection our code to the sql database)
+
+
+// const path = require('path');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const db= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views'); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+// db.execute('SELECT * FROM products')         // create table in "node-complete" and name "products"...note: there u can add new "fields"...in "schema"--> u add "fields".. 
+// .then(result=>{
+//     //console.log(result);
+//     console.log(result[0],result[1]);
+// })
+// .catch(err=>{
+//     console.log(err);
+// });
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// app.listen(3000);
+
+
+
+
+
+
+
+// after this  now lets see adjust our models to interact with our database instead of files...
+
+// task --> fetching products
+
+
+const path = require('path');
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const errorController = require('./controllers/error');
+const db= require('./util/database');                     // pool that allows to connection in it  
+
+const app = express();
+
+app.set('view engine', 'ejs'); 
+app.set('views', 'views'); 
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+
+db.execute('SELECT * FROM products')         // create table in "node-complete" and name "products"...note: there u can add new "fields"...in "schema"--> u add "fields".. 
+.then(result=>{
+    //console.log(result);
+    console.log(result[0],result[1]);
+})
+.catch(err=>{
+    console.log(err);
+});
+
+const contactRoutes=require('./routes/contactUs');
+const successRoutes=require('./routes/successful');
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+ 
+app.use('/admin', adminRoutes);
+app.use(shopRoutes);
+app.use('/admin', contactRoutes); 
+app.use('/admin', successRoutes); 
+
+app.use(errorController.get404);
+
+app.listen(3000);
