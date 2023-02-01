@@ -23,7 +23,7 @@
 
 // app.listen(3000);
 
-
+ 
 
 // warp up
 
@@ -259,7 +259,7 @@
 
 
 
-// sql integrate  (connection our code to the sql database)
+// sql integrate  (connection our code to the sql database) and retrieving data (vs code terminal)
 
 
 // const path = require('path');
@@ -303,6 +303,8 @@
 
 // app.listen(3000);
 
+// output: since retrieving data.... the output shown in vs code terminal what we created table and values in sql workbench will recieve here....
+
 
 
 
@@ -311,7 +313,7 @@
 
 // after this  now lets see adjust our models to interact with our database instead of files...
 
-// task --> fetching products
+// task --> fetching products and till last sql task (and adding delete functionality in admin )
 
 
 const path = require('path');
@@ -330,14 +332,7 @@ app.set('views', 'views');
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
 
-db.execute('SELECT * FROM products')         // create table in "node-complete" and name "products"...note: there u can add new "fields"...in "schema"--> u add "fields".. 
-.then(result=>{
-    //console.log(result);
-    console.log(result[0],result[1]);
-})
-.catch(err=>{
-    console.log(err);
-});
+
 
 const contactRoutes=require('./routes/contactUs');
 const successRoutes=require('./routes/successful');
@@ -354,3 +349,14 @@ app.use('/admin', successRoutes);
 app.use(errorController.get404);
 
 app.listen(3000);
+
+
+// to perform mysql instead of file storage....
+// will remove file related codes to save and retreive from file will remove from projects...
+// models-> products.js--> reomove there --"fs" and "file path" and "construct a path"(p) removing  and "getProductsFromFile" which getting from file helper function....
+// and removing "save" method-->"getProductsFromFile"
+// and removing "delete" method-->delete function static block..
+// and removing "fetchAll" method..
+// and removing "findById" method..
+// now i will not work with callbacks(callback argument)...and work with "promise"...
+// fetchall need to reach database-->to do-->import "pool" object from "database.js"

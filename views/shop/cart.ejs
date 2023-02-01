@@ -1,10 +1,10 @@
 <%- include('../includes/head.ejs') %>
 </head>
- 
+  
 <body>
  <%- include('../includes/navigation.ejs') %>
- <main>
-                                                   <!-- products is name in res.render in shopjs -->
+  <main>
+                                                    
     <% if (products.length >0) { %>
         <ul>
            <% products.forEach(p => { %>
@@ -12,7 +12,7 @@
             <p><%= p.productData.title %> (<%=p.qty %>)</p>
               <form action="/cart-delete-item" method="POST">
                 <input type="hidden" value="<%= p.productData.id %>" name="productId">   
-                                                                                                <!-- "name" will be can extract using by that name on our backend-->
+                                                                                                
                 <button class="btn" type="submit">Delete</button>
               </form>
           </li>
@@ -22,5 +22,6 @@
             <h1> No Products in Cart!</h1>
         <% } %>
  </main>
+
  <%- include('../includes/end.ejs') %>
    

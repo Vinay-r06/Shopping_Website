@@ -1,5 +1,5 @@
 const Product= require('../models/product');
-
+  
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
@@ -15,9 +15,12 @@ exports.postAddProduct = (req, res, next) => {
   const price=req.body.price;
   const description=req.body.description;
   const product=new Product(null,title, imageUrl, description, price);         // null--> because "id"--> added in the construct product in "product.js" in  "models"..so it will fail in if condition because null and go to else condition to create new product..
-  product.save();
-  res.redirect('/');
-};
+  product.save()                                                             // insert into database
+  .then(()=>{
+    res.redirect('/');
+  })
+  .catch(err=> console.log(err));
+}
 
 exports.getEditProduct = (req, res, next) => {
   const editMode=req.query.edit;                   //checking here
@@ -25,7 +28,7 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect('/');
   }
   const prodId =req.params.productId;              //can access req.params.productId--and get that ID from the URL..
-  Product.findById(prodId, product=>{                             //  1st use my product model and the productID and then have my callback "product" which is received
+  Product.findById(prodId, (product)=>{                             //  1st use my product model and the productID and then have my callback "product" which is received
     if(!product){
       return res.redirect('/');
     }
@@ -53,20 +56,25 @@ res.redirect('/admin/products');
 };
 
 exports.getProducts = (req, res, next) => {
-Product.fetchAll(products=>{
+Product.fetchAll()
+.then(([rows, fieldData])=>{
   res.render('admin/products', {
-    prods: products,
+    prods: rows,
     pageTitle: 'Admin Products',
     path: '/admin/products',
   });
-  });
-
+})
+.catch(err=> console.log(err));
 };  
 
 exports.postDeleteProduct = (req, res, next) => {
 const prodId= req.body.productId;
-Product.deleteById(prodId);
-res.redirect('/admin/products');
+Product.deleteById(prodId)
+.then((product)=>{
+  console.log(product);
+  res.redirect('/admin/products');
+})
+.catch(err=> console.log(err));
 
 }
 
@@ -89,4 +97,4 @@ res.redirect('/admin/products');
 //vt:125
 // to pre populate this form with the product..we fetch the product ...
 //need product model and product ID ....prod ID can be retrieved from incoming request ...
-// if check the routes we had dynamic segment ...so by this name we can extract the product id..-->(/edit-product/:productID)
+// if check the routes we had dynamic segment ...so by this name we can extract the product id..-->(/edit=product/:productID)

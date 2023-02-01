@@ -15,7 +15,7 @@ const mysql = require('mysql2');
 // "databases" are our "schemas"
 //here we take "node-complete" database..
 // to create pool -- we give javascipt object which we give some information---> "host", "user", "database", "password"...
-
+  
  const pool= mysql.createPool({
  host:'localhost',
  user:'root',
