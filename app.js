@@ -316,13 +316,170 @@
 // task --> fetching products and till last sql task (and adding delete functionality in admin )
 
 
+// const path = require('path');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const db= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views'); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// app.listen(3000);
+
+
+// to perform mysql instead of file storage....
+// will remove file related codes to save and retreive from file will remove from projects...
+// models-> products.js--> reomove there --"fs" and "file path" and "construct a path"(p) removing  and "getProductsFromFile" which getting from file helper function....
+// and removing "save" method-->"getProductsFromFile"
+// and removing "delete" method-->delete function static block..
+// and removing "fetchAll" method..
+// and removing "findById" method..
+// now i will not work with callbacks(callback argument)...and work with "promise"...
+// fetchall need to reach database-->to do-->import "pool" object from "database.js"
+
+
+
+
+
+// making sql easy with sequelize(third party package)...
+
+
+
+// const path = require('path');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const db= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views'); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// app.listen(3000);
+
+
+// in sequelize we use database but we code we write will be different instead of sql statements = we use a "third party package" that allows us to work with "javascript objects and convient methods to create new elements or  edit in the database..."
+
+
+
+// wat is sequelize ?   task 1
+
+// third party package.... an object-relational Mapping library..
+// it does heavy lifting and all sql code..
+// behind the it will maps it into javascript objects with conivence methods..can call to excute..behind sql code..... no need to write sql code...
+
+// we got "objects- "user" "---this had -- "name", "age", "email", "password"..
+
+// this is "mapped" to a "database table" by "sequelize"..
+// automatically creates table , also sets relations and table....
+// when we create a new "user"--we simply call method on that user javascript object and sequelize executes sql query.. or sql command..
+
+// so instead of writing this on own ,  we simply create a javascript object and work with that...
+
+// like this...." const user = User.create ({name: 'Max', age: 28, password: 'dsdg312'}) "
+
+// sequelize offers us the models to work with our database...
+
+// core concepts..
+
+// "models"-  eg: User,Product
+
+// Instances--- const user =user.build()          // can instance this models.. can execute the constructor functions or use "utility methods" to create let's say a "new user object" based on that model..
+
+//"queries"--  User.findAll()                    // can run queries using User..
+
+// associations -- User.hasMany(Product)         // can associate with our user model to product model...
+
+
+
+
+
+
+
+
+
+// connecting to the database--- task 2 
+
+// install sequelize pacakge in vs code---- run--- "npm install --save sequelize"    // --save -because  this is a production dependency...its "core dependancy" of our project..
+// then create model with sequelize
+// connect database...
+// delete table in mysql workbench..
+// open database.js ..in there i want to write some code to connect sequelize to the databse...
+// now sequelize uses mysql2 behind..
+// in behind will do something like code first written in database.js..but now we delete that code written...
+// instaed we import "sequelize"...
+
+
+
+
+
+
+
+// defining model-- task.
+
+// in product.js file -- models floder..
+// delete all
+// write new code..
+
+
+
+
+// syncing Js definitions to the database...
+
+
 const path = require('path');
 
 const express = require('express');
 const bodyParser = require('body-parser');
 
 const errorController = require('./controllers/error');
-const db= require('./util/database');                     // pool that allows to connection in it  
+const sequelize= require('./util/database');                     // pool that allows to connection in it  
 
 const app = express();
 
@@ -348,15 +505,13 @@ app.use('/admin', successRoutes);
 
 app.use(errorController.get404);
 
-app.listen(3000);
+sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+          .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+           //console.log(result);
+           app.listen(3000);
+        })
+        .catch(err=>{
+            console.log(err);  
+        });
+           
 
-
-// to perform mysql instead of file storage....
-// will remove file related codes to save and retreive from file will remove from projects...
-// models-> products.js--> reomove there --"fs" and "file path" and "construct a path"(p) removing  and "getProductsFromFile" which getting from file helper function....
-// and removing "save" method-->"getProductsFromFile"
-// and removing "delete" method-->delete function static block..
-// and removing "fetchAll" method..
-// and removing "findById" method..
-// now i will not work with callbacks(callback argument)...and work with "promise"...
-// fetchall need to reach database-->to do-->import "pool" object from "database.js"

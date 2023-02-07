@@ -13,7 +13,7 @@ exports.getProducts=(req,res,next)=>{
         .catch(err=>console.log(err));
     }
 
-   
+    
 
 exports.getProduct = (req,res, next)=>{
     const prodId=req.params.productId;                               //.params--> object by request....,// productId--> because we name it same in "shop.js" routes -->like-->/products/:productId
