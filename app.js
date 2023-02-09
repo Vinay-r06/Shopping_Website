@@ -473,7 +473,370 @@
 // syncing Js definitions to the database...
 
 
+// const path = require('path');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const sequelize= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views'); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+//           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+//            //console.log(result);
+//            app.listen(3000);
+//         })
+//         .catch(err=>{
+//             console.log(err);  
+//         });
+           
+
+
+
+
+
+
+
+//  sequelize inserting data and creating product  - task
+
+
+
+        // const path = require('path');
+
+        // const express = require('express');
+        // const bodyParser = require('body-parser');
+        
+        // const errorController = require('./controllers/error');
+        // const sequelize= require('./util/database');                     // pool that allows to connection in it  
+        
+        // const app = express();
+        
+        // app.set('view engine', 'ejs'); 
+        // app.set('views', 'views'); 
+        
+        // const adminRoutes = require('./routes/admin');
+        // const shopRoutes = require('./routes/shop');
+        
+        
+        
+        // const contactRoutes=require('./routes/contactUs');
+        // const successRoutes=require('./routes/successful');
+        
+        
+        // app.use(bodyParser.urlencoded({ extended: false }));
+        // app.use(express.static(path.join(__dirname, 'public')));
+         
+        // app.use('/admin', adminRoutes);
+        // app.use(shopRoutes);
+        // app.use('/admin', contactRoutes); 
+        // app.use('/admin', successRoutes); 
+        
+        // app.use(errorController.get404);
+        
+        // sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+        //           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+        //            //console.log(result);
+        //            app.listen(3000);
+        //         })
+        //         .catch(err=>{
+        //             console.log(err);  
+        //         });
+                   
+     
+    // TO INSERT go to "controllers"--then--"admin.js"
+    // their "postAddProduct" change the create method--"Product.create"
+    // then give "attributes": const "reference"
+   // go to add product page type all the product and submit..  
+    // then go to mysql and refresh table..
+    // the data is inserted     
+
+
+
+
+
+// With Sequelize v5," findById()" was replaced by "findByPk()".
+
+
+
+
+
+
+
+
+
+// retrieving data and finding products...
+
+
+
+// const path = require('path');
+// const cors = require('cors');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const sequelize= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views');
+
+// app.use(cors()); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+//           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+//            //console.log(result);
+//            app.listen(3000);
+//         })
+//         .catch(err=>{
+//             console.log(err);  
+//         }); 
+            
+
+// go to "controllers" there go to--"shop.js"--rewrite "getIndex" code        
+// sequelize will not work--"fetchAll()" method...instead we had many types...
+//  so use ".findAll()" method-- to access all model file..also give arguments javascript object- like "where"--limiting the data we retrieve..  and then promise...
+// without restriction -- we call --"fetchAll()" for all access..and then promise and catch.
+// load the local host..click="shop" u will get all the products...       
+
+// now same logic to "getProducts"
+// load the local host..click="Products"..u will get the products..
+
+
+
+
+
+// getting single products when u click on the "details"(in the Products page)....task
+
+
+
+// const path = require('path');
+// const cors = require('cors');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const sequelize= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views');
+
+// app.use(cors()); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+//           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+//            //console.log(result);
+//            app.listen(3000);
+//         })
+//         .catch(err=>{
+//             console.log(err);  
+//         }); 
+           
+
+
+// go to "controllers" there go to--"shop.js"--rewrite "getProduct" code        
+// in sequelize we had ".findById" but the next line we had "array of products"..
+// With Sequelize v5," findById()" was replaced by "findByPk()".
+// instead i will use single product
+
+// if u get image full window...then check in "views" -- their go to "shop" folder their-- "product-detail.ejs"....their u can find "image class" class wrapper class...
+// in css file--there "main.css" file.. write code..image height..
+
+// we can also write for "findAll" method using "where" syntax...
+
+
+
+
+
+
+
+
+
+// fetching admin products...task
+
+
+
+// const path = require('path');
+// const cors = require('cors');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const sequelize= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views');
+
+// app.use(cors()); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+//           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+//            //console.log(result);
+//            app.listen(3000);
+//         })
+//         .catch(err=>{
+//             console.log(err);  
+//         }); 
+           
+
+
+ // when clicking "admin products"..we get  --Product.fetchAll is not a function..
+ // so change the code in "getProducts" to sequelize model...remove "fecthAll" and add "findAll"... 
+
+
+
+
+
+
+ // updating products---task
+
+// const path = require('path');
+// const cors = require('cors');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const sequelize= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views');
+
+// app.use(cors()); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+//           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+//            //console.log(result);
+//            app.listen(3000);
+//         })
+//         .catch(err=>{
+//             console.log(err);  
+//         }); 
+           
+
+
+// in "controllers" their--"admin.js"---their--"getEditProduct" write code for sequelize..
+// after write code for seuelize in  "getEditProduct" and click and load on "admin products "
+// after for submit we should do sequelize for "postEditProduct"-- we should write "postEditProduct"....
+
+
+
+
+
+// deleting products--task
+
+
 const path = require('path');
+const cors = require('cors');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -484,7 +847,9 @@ const sequelize= require('./util/database');                     // pool that al
 const app = express();
 
 app.set('view engine', 'ejs'); 
-app.set('views', 'views'); 
+app.set('views', 'views');
+
+app.use(cors()); 
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
@@ -512,6 +877,69 @@ sequelize.sync()                                                  // sync method
         })
         .catch(err=>{
             console.log(err);  
-        });
+        }); 
            
 
+
+//in "controllers" their--"admin.js"---their--"postDeleteProduct" write code for sequelize..
+// in sequelize we dont had "deleteById" method...soo  ".destroy{where:{}}"
+// or we can do using "findAll()"  
+
+
+
+
+
+
+
+// creating a user model--task
+
+
+
+// const path = require('path');
+// const cors = require('cors');
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+
+// const errorController = require('./controllers/error');
+// const sequelize= require('./util/database');                     // pool that allows to connection in it  
+
+// const app = express();
+
+// app.set('view engine', 'ejs'); 
+// app.set('views', 'views');
+
+// app.use(cors()); 
+
+// const adminRoutes = require('./routes/admin');
+// const shopRoutes = require('./routes/shop');
+
+
+
+// const contactRoutes=require('./routes/contactUs');
+// const successRoutes=require('./routes/successful');
+
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.static(path.join(__dirname, 'public')));
+ 
+// app.use('/admin', adminRoutes);
+// app.use(shopRoutes);
+// app.use('/admin', contactRoutes); 
+// app.use('/admin', successRoutes); 
+
+// app.use(errorController.get404);
+
+// sequelize.sync()                                                  // sync method has look at all the models u defined and...u models in the u r model files by calling sequelize defined on that same sequelize object...
+//           .then(result =>{                                                      // it syncs u r models to the database by creating the appropriate tables and if had relations...  
+//            //console.log(result);
+//            app.listen(3000);
+//         })
+//         .catch(err=>{
+//             console.log(err);  
+//         }); 
+           
+
+
+// 
+// 

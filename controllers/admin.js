@@ -14,13 +14,20 @@ exports.postAddProduct = (req, res, next) => {
   const imageUrl= req.body.imageUrl;
   const price=req.body.price;
   const description=req.body.description;
-  const product=new Product(null,title, imageUrl, description, price);         // null--> because "id"--> added in the construct product in "product.js" in  "models"..so it will fail in if condition because null and go to else condition to create new product..
-  product.save()                                                             // insert into database
-  .then(()=>{
-    res.redirect('/');
-  })
-  .catch(err=> console.log(err));
-}
+  Product.create({                                           //.create will store database imeddiate
+   title:title,
+   price:price,
+   imageUrl:imageUrl,
+   description:description
+  }).then(result=>{
+    //console.log(result);
+    console.log('Created Product')
+    res.redirect('/admin/products');
+  })                                                            // sequelize works with promises...
+     .catch(err=>{
+     console.log(err);
+}); 
+};
 
 exports.getEditProduct = (req, res, next) => {
   const editMode=req.query.edit;                   //checking here
@@ -28,18 +35,22 @@ exports.getEditProduct = (req, res, next) => {
     return res.redirect('/');
   }
   const prodId =req.params.productId;              //can access req.params.productId--and get that ID from the URL..
-  Product.findById(prodId, (product)=>{                             //  1st use my product model and the productID and then have my callback "product" which is received
-    if(!product){
-      return res.redirect('/');
-    }
-    res.render('admin/edit-product', {
-      pageTitle: 'Edit Product',
-      path: '/admin/edit-product',
-      editing: editMode,                                 // now we can only have editmode only this set..
-      product: product               // name it watever u want "key"-->product: product-->callback which  received....
-    }); 
-  })
-};
+  Product.findByPk(prodId) 
+    .then(product=>{
+      if(!product){
+        return res.redirect('/');
+      }
+      res.render('admin/edit-product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit-product',
+        editing: editMode,                                 // now we can only have editmode only this set..
+        product: product               // name it watever u want "key"-->product: product-->callback which  received....
+      });  
+    })
+    .catch(err=>{
+      console.log(err);
+    })                             //  1st use my product model and the productID and then have my callback "product" which is received
+  }
 
 
 exports.postEditProduct = (req, res, next) => {     // after editing we should save and save method is in "product.js" in models.. we should tell that only update new one by comparing "id" before save...
@@ -49,17 +60,28 @@ const updatedTitle=req.body.title;                                              
 const updatedPrice= req.body.price;
 const updatedImageUrl=req.body.imageUrl;
 const updatedDesc= req.body.description;
-const updatedProduct =new Product(prodId, updatedTitle, updatedPrice, updatedImageUrl, updatedDesc );                 // 1st argument-->exting "prodId"...2nd-->all edit new value..
-
-updatedProduct.save();
-res.redirect('/admin/products');
+Product.findByPk(prodId)                    // for sequelize we should first search the id of the product in database..
+      .then(product=>{                      //please note this will not directly change the data in the database though, it will only do it locally in  our app, in our javascript app here for the moment.
+      product.title = updatedTitle;
+      product.price = updatedPrice;
+      product.imageUrl = updatedImageUrl;
+      product.description = updatedDesc;
+      return product.save();                                // we do ".then" it will becomes ugly becomes nested promises..so i will "return"   // it will create new one if doest not had .. if it exit then overwrite and updated ..      // we know it will not save in database so do that we will do "product.save()"
+      })                                                     // ".save()"-->another method to by sequelize
+      .then(result=>{
+        console.log('UPDATED PRODUCT!');
+        res.redirect('/admin/products');                 // since this promise it is async operation it will registered and excuted later since we are redirecting after excuetion og async operation...u will get once page loaded..if it had err u want reload page because err code is outside the async..
+      })                                                // since we are return the ".save"..we use that here ...
+      .catch(err=>{                                          // this catch block gives err for both promises 
+        console.log(err); 
+      })
 };
 
 exports.getProducts = (req, res, next) => {
-Product.fetchAll()
-.then(([rows, fieldData])=>{
+Product.findAll()                                       // in sequelize we are not using callback we use promise
+.then(products=>{
   res.render('admin/products', {
-    prods: rows,
+    prods: products,
     pageTitle: 'Admin Products',
     path: '/admin/products',
   });
@@ -69,13 +91,15 @@ Product.fetchAll()
 
 exports.postDeleteProduct = (req, res, next) => {
 const prodId= req.body.productId;
-Product.deleteById(prodId)
-.then((product)=>{
-  console.log(product);
-  res.redirect('/admin/products');
+Product.findByPk(prodId)
+       .then(product=>{
+      return product.destroy();
 })
-.catch(err=> console.log(err));
-
+     .then(result => {                      // once destroy succeded 
+     console.log('DESTROYED PRODUCT');
+     res.redirect('/admin/products');
+     })                                
+     .catch(err=> console.log(err));
 }
 
 

@@ -23,7 +23,7 @@ static addProduct(id, productPrice) {                             // id as argum
         // 2nd and 3rd
         const existingProductIndex =cart.products.findIndex(prod=>prod.id === id);   // if find same then stored in exitingProduct
         const existingProduct = cart.products[existingProductIndex] ;                     // this allows me to use that index to replace the item in our cart products here..                                                                 // if i got exiting product.. dont want add new product...instead i want to replace the old one and to do that...i need to find out where in my old products this exiting product was located..so which position it had..to do this i will get index (array concept)
-       
+        
         let updatedProduct;
         if (existingProduct) {
             updatedProduct= {...existingProduct};                       // using nextGeneration js with the object spread operator..i will take all the properties of the exiting product..and add them to a new js object and then on that updated product... 

@@ -2,67 +2,73 @@ const Product=require('../models/product');
 const Cart = require('../models/cart');
 
 exports.getProducts=(req,res,next)=>{
-    Product.fetchAll()
-    .then(([rows, fieldData])=>{                              // we can use "nextgen" syntax which is feature called "destructring""
-        res.render('shop/product-list',{
-            prods:rows,
-            pageTitle: 'All Products',
-            path:'/products'
-        })
-    })
-        .catch(err=>console.log(err));
+    Product.findAll()
+           .then(products=>{
+            res.render('shop/product-list', {
+                prods:products,                                          // my rows here are the entries in the products table...so products...
+                pageTitle:'All Products',
+                path:'/products'
+            })
+          }).catch(err=>{
+            console.log(err);
+          }); 
     }
 
-    
 
 exports.getProduct = (req,res, next)=>{
-    const prodId=req.params.productId;                               //.params--> object by request....,// productId--> because we name it same in "shop.js" routes -->like-->/products/:productId
-    Product.findById(prodId)
-    .then(([product])=>{
+    const prodId=req.params.productId;                           
+    Product.findByPk(prodId)
+    .then(product => {
         res.render('shop/product-detail', {
-            product:product[0], 
+            product:product, 
             pageTitle:product.title,
-             path:'/products'
+             path:'/products',
            });                                       //  {this is key-->product:product-->for retrieving product... this above line variable product }
     })
     .catch(err=>
         console.log(err));
 };
-    
+  
+
+
+// using "where" syntax for above code for "findAll" method
+
+// exports.getProduct = (req,res, next)=>{
+//     const prodId=req.params.productId; 
+//     Product.findAll({where: {id:prodId} })                // can see query   // by default ".findByid({where: {id: prodId}})"--> gives array...findByid--gives multiple items..even array with only one element    
+//            .then(products=> {
+//             res.render('shop/product-detail', {
+//                 product:products[0], 
+//                 pageTitle:products[0].title,
+//                  path:'/products'
+//                });  
+//            })
+//            .catch(err=> {
+//         console.log(err);
+//     })                          
+// };
 
 exports.getIndex=(req,res,next)=>{
-    Product.fetchAll()
-    .then(([rows, fieldData])=>{                              // we can use "nextgen" syntax which is feature called "destructring""
-    res.render('shop/index', {
-        prods:rows,                                          // my rows here are the entries in the products table...so products...
-        pageTitle:'Shop',
-        path:'/'
-    })
-    })
-    .catch(err=>console.log(err));                // so our data is retrieved from the database...
+    Product.findAll()
+           .then(products=>{
+            res.render('shop/index', {
+                prods:products,                                          // my rows here are the entries in the products table...so products...
+                pageTitle:'Shop',
+                path:'/'
+            })
+          }).catch(err=>{
+            console.log(err);
+          });
 }
 
 exports.getCart=(req,res,next)=>{
-    // Cart.getCart(cart=>{                                // the callback function i just added in the cart model where i will eventually receive the cart.. and i will render my view...
-    //     Product.fetchAll(products =>{                  // i will use my product model then to fetch all products..
-    //      const cartProducts=[];
-    //         for (product of products){
-    //        const cartProductData = cart.products.find(prod=>prod.id===product.id);
-    //         if(cartProductData){
-    //             cartProducts.push({productData: product, qty:cartProductData.qty});
-    //         } 
-    //     }
-    //Cart.getCart()
-    //.then(([rows, fieldData])=>{
         res.render('shop/cart',{
             path:'/cart',
             pageTitle:'Your Cart',
-           // products:cartProducts
+           
         })
     }
-      //)
-//   })
-// }
+    
 
 
 exports.postCart=(req,res,next)=>{                    // we want retreive the product ID from the incoming request and then also fetch that product in our database(file)

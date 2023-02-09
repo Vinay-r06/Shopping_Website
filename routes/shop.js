@@ -11,7 +11,7 @@ router.get('/', shopController.getIndex);
 router.get('/products', shopController.getProducts);
 
 router.get('/products/:productId', shopController.getProduct);               //-->:productId---> telling express there will be a segment variable when using -->":"
- 
+  
  
 router.get('/cart', shopController.getCart);
 
