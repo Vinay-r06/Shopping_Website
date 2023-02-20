@@ -5,7 +5,7 @@ const path = require('path');            // path helper to construct good path..
 const p= path.join(path.dirname(process.mainModule.filename), 'data', 'cart.json');   // cart.json--> there  we will store an object that represents our cart...
   
 module.exports= class Cart {
-
+ 
 static addProduct(id, productPrice) {                             // id as argument
 
     // approaches

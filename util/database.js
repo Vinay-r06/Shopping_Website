@@ -34,7 +34,7 @@
 // connecting to the database--- task 2 
 
 
- 
+  
 
 const Sequelize = require ('sequelize');                                                 // import constructor function and class...
 
